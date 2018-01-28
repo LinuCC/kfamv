@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20180128035626) do
     t.index ["post_id"], name: "index_amv_posts_on_post_id"
   end
 
-  create_table "animes", force: :cascade do |t|
+  create_table "amv_sources", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -7,7 +7,7 @@ RUN apk add --no-cache \
     ruby ruby-bundler ruby-bigdecimal ruby-io-console tzdata nodejs bash \
     # Bundle install deps
     build-base ruby-dev libc-dev linux-headers gmp-dev openssl-dev libxml2-dev \
-    libxslt-dev postgresql-dev
+    libxslt-dev postgresql-dev libffi-dev
 
 ENV BUNDLE_SILENCE_ROOT_WARNING=1
 

@@ -25,9 +25,9 @@ messageboard = Thredded::Messageboard.create!(
 )
 
 animes = [
-  Anime.create!(title: 'Tengen Toppa Gurren Laggan'),
-  Anime.create!(title: 'Excel Saga'),
-  Anime.create!(title: 'Girls und Panzer'),
+  AmvSource.create!(title: 'Tengen Toppa Gurren Laggan'),
+  AmvSource.create!(title: 'Excel Saga'),
+  AmvSource.create!(title: 'Girls und Panzer'),
 ];
 
 songs = [
