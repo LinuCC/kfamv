@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+class Kf::User < ApplicationRecord
   validates :display_name, presence: true, uniqueness: true
   before_validation :uniq_display_name!, on: :create
 

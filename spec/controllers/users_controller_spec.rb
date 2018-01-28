@@ -14,7 +14,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'returns http success' do
-      user = User.create(valid_attributes)
+      user = Kf::User.create(valid_attributes)
       get :show, params: { id: user.id }
       expect(response).to have_http_status(:success)
     end

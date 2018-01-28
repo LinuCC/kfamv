@@ -6,7 +6,7 @@
 # The name of the class your app uses for your users.
 # By default the engine will use 'User' but if you have another name
 # for your user class - change it here.
-Thredded.user_class = 'User'
+Thredded.user_class = 'Kf::User'
 
 # User name column, used in @mention syntax and *must* be unique.
 # This is the column used to search for users' names if/when someone is @ mentioned.

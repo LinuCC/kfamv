@@ -1,3 +1,8 @@
+
+##
+# ApplicationController is not namespaced to Kf because Thredded expects it to
+# be in root.
+#
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?

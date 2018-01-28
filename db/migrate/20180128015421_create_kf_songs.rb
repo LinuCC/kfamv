@@ -1,6 +1,6 @@
-class CreateSongs < ActiveRecord::Migration[5.1]
+class CreateKfSongs < ActiveRecord::Migration[5.1]
   def change
-    create_table :songs do |t|
+    create_table :kf_songs do |t|
       t.string :title
       t.string :artist
 

@@ -12,7 +12,7 @@ RailsEmailPreview.setup do |config|
   config.enable_send_email = Rails.env.production?
 
   # You can specify a controller for RailsEmailPreview::ApplicationController to inherit from:
-  #  config.parent_controller = 'Admin::ApplicationController' # default: '::ApplicationController'
+  config.parent_controller = 'ApplicationController' # default: '::ApplicationController'
 end
 
 #= REP + Comfortable Mexican Sofa integration

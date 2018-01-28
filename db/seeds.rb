@@ -1,12 +1,12 @@
 # frozen_string_literal: true
-admin = User.create!(
+admin = Kf::User.create!(
     display_name: 'Admin',
     email: "admin@kfamv.com",
     password: "123456",
     admin: true
 )
 
-user = User.create!(
+user = Kf::User.create!(
     display_name: 'LinuCC',
     email: 'linucc@linu.cc',
     password: "asdf1234"
@@ -25,15 +25,15 @@ messageboard = Thredded::Messageboard.create!(
 )
 
 animes = [
-  AmvSource.create!(title: 'Tengen Toppa Gurren Laggan'),
-  AmvSource.create!(title: 'Excel Saga'),
-  AmvSource.create!(title: 'Girls und Panzer'),
+  Kf::AmvSource.create!(title: 'Tengen Toppa Gurren Laggan'),
+  Kf::AmvSource.create!(title: 'Excel Saga'),
+  Kf::AmvSource.create!(title: 'Girls und Panzer'),
 ];
 
 songs = [
-  Song.create!(title: 'Never gonna you up', artist: 'Rick Astley'),
-  Song.create!(title: 'Sandstorm', artist: 'Darude'),
-  Song.create!(title: 'Deja Vu', artist: 'Initial D'),
+  Kf::Song.create!(title: 'Never gonna you up', artist: 'Rick Astley'),
+  Kf::Song.create!(title: 'Sandstorm', artist: 'Darude'),
+  Kf::Song.create!(title: 'Deja Vu', artist: 'Initial D'),
 ];
 
 Thredded::TopicForm.new(
@@ -102,7 +102,9 @@ Alco out.
 )
 amv_post_form.save
 
-amv = AmvPost.create!(post: amv_post_form.post, editor_list: "xXxAlcoHolicxXx")
+amv = Kf::AmvPost.create!(
+  post: amv_post_form.post, editor_list: "xXxAlcoHolicxXx"
+)
 
 amv_post_form2 = Thredded::TopicForm.new(
     title: 'Speeeeedometer',
@@ -114,7 +116,7 @@ THE CoNTENXT
 )
 amv_post_form2.save
 
-AmvPost.create!(
+Kf::AmvPost.create!(
   post: amv_post_form2.post, editor_list: 'Mark Twain, DeineMudda34'
 )
 

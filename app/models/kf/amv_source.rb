@@ -1,4 +1,4 @@
-class AmvSource < ApplicationRecord
+class Kf::AmvSource < ApplicationRecord
   def display_name(value)
     title
   end
