@@ -6,10 +6,22 @@ admin = User.create!(
     admin: true
 )
 
+user = User.create!(
+    display_name: 'LinuCC',
+    email: 'linucc@linu.cc',
+    password: "asdf1234"
+)
+
+amv_messageboard = Thredded::Messageboard.create!(
+    name: 'AMVs',
+    slug: 'amvs',
+    description: 'The newest and coolest AMVs'
+)
+
 messageboard = Thredded::Messageboard.create!(
-    name: 'General',
-    slug: 'general',
-    description: 'A board is not a board without some posts'
+    name: 'Frontpage',
+    slug: 'frontpage',
+    description: 'Get updates on all the stuff'
 )
 
 animes = [
@@ -25,7 +37,7 @@ songs = [
 ];
 
 Thredded::TopicForm.new(
-    title: 'My first topic',
+    title: 'Here, have some stuff',
     content: <<-MARKDOWN,
 Hello **world**! :smile: This first post shows some of the Thredded default post
 formatting functionality.
@@ -69,3 +81,25 @@ TeX Math support (e.g. $$\phi$$) can be enabled by installing the
     user: admin,
     messageboard: messageboard
 ).save
+
+amv_post_form = Thredded::TopicForm.new(
+    title: 'Hakuna Matata your ratata AMV by xXxAlcoHolicxXx',
+    content: <<-MARKDOWN,
+Hello Community,
+
+I have finished my *biggest*, most _badass_ AMV yet.
+Look at it and be amazed:
+
+https://www.youtube.com/watch?v=2Z4m4lnjxkY
+
+What a masterpiece.
+I want to thank my family, friends, cat and my waifu for this great opportunity.
+
+Alco out.
+  MARKDOWN
+  user: user,
+  messageboard: amv_messageboard
+)
+amv_post_form.save
+
+amv = AmvPost.create!(post: amv_post_form.post)
