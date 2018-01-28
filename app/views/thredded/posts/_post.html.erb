@@ -2,6 +2,9 @@
 <%= content_tag :article, id: dom_id(post), class: "thredded--post thredded--#{post.read_state}--post" do %>
   <%= render 'thredded/posts_common/actions', post: post, actions: local_assigns[:actions] %>
   <%= render 'thredded/posts_common/header', post: post %>
+  <% if post.post_instance.amv_post? %>
+    <%= render 'kf/amv_posts/tags', post: post.post_instance %>
+  <% end %>
   <%= content || render('thredded/posts/content', post: post) %>
   <% if post.pending_moderation? && !Thredded.content_visible_while_pending_moderation %>
     <p class="thredded--alert thredded--alert-warning"><%= t 'thredded.posts.pending_moderation_notice' %></p>

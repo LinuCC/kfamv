@@ -15,19 +15,6 @@ ActiveRecord::Schema.define(version: 20180128035626) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "amv_posts", force: :cascade do |t|
-    t.bigint "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_amv_posts_on_post_id"
-  end
-
-  create_table "amv_sources", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -40,11 +27,44 @@ ActiveRecord::Schema.define(version: 20180128035626) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
-  create_table "songs", force: :cascade do |t|
+  create_table "kf_amv_posts", force: :cascade do |t|
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_kf_amv_posts_on_post_id"
+  end
+
+  create_table "kf_amv_sources", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "kf_songs", force: :cascade do |t|
     t.string "title"
     t.string "artist"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "kf_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "admin", default: false, null: false
+    t.string "display_name", null: false
+    t.index "lower((display_name)::text) text_pattern_ops", name: "kf_users_display_name_lower", unique: true
+    t.index ["email"], name: "index_kf_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_kf_users_on_reset_password_token", unique: true
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
@@ -296,29 +316,9 @@ ActiveRecord::Schema.define(version: 20180128035626) do
     t.index ["user_id", "postable_id"], name: "thredded_user_topic_read_states_user_postable", unique: true
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "admin", default: false, null: false
-    t.string "display_name", null: false
-    t.index "lower((display_name)::text) text_pattern_ops", name: "users_display_name_lower", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  add_foreign_key "amv_posts", "thredded_posts", column: "post_id"
+  add_foreign_key "kf_amv_posts", "thredded_posts", column: "post_id"
   add_foreign_key "thredded_messageboard_users", "thredded_messageboards", on_delete: :cascade
   add_foreign_key "thredded_messageboard_users", "thredded_user_details", on_delete: :cascade
+  add_foreign_key "thredded_user_post_notifications", "kf_users", column: "user_id", on_delete: :cascade
   add_foreign_key "thredded_user_post_notifications", "thredded_posts", column: "post_id", on_delete: :cascade
-  add_foreign_key "thredded_user_post_notifications", "users", on_delete: :cascade
 end

@@ -28,5 +28,7 @@ module Kfamv
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.i18n.available_locales = %w(en)
+
+    config.amv_messageboard_id = 1
   end
 end

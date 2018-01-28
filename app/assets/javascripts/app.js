@@ -1,5 +1,7 @@
 //= require_self
 //= require_tree ./app
+//= require jquery
+//= require select2
 
 (function () {
   this.App = this.App || {};
@@ -58,4 +60,11 @@
   App.isAppPage = function() {
     return !!document.getElementById('app-page-container');
   }
+
+  App.onPageLoad(function() {
+    $('.tag-select').select2({
+      tags: true,
+      tokenSeparators: [',']
+    });
+  });
 }).call(this);

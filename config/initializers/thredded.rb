@@ -168,3 +168,7 @@ Rails.application.config.to_prepare do
     end
   end
 end
+
+load('lib/overrides/thredded/post_override.rb')
+load('lib/overrides/thredded/post_view_override.rb')
+load('lib/overrides/thredded/topic_form_override.rb')
