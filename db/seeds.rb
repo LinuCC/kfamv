@@ -12,6 +12,12 @@ messageboard = Thredded::Messageboard.create!(
     description: 'A board is not a board without some posts'
 )
 
+animes = [
+  Anime.create!(title: 'Tengen Toppa Gurren Laggan'),
+  Anime.create!(title: 'Excel Saga'),
+  Anime.create!(title: 'Girls und Panzer'),
+];
+
 Thredded::TopicForm.new(
     title: 'My first topic',
     content: <<-MARKDOWN,
