@@ -18,6 +18,12 @@ animes = [
   Anime.create!(title: 'Girls und Panzer'),
 ];
 
+songs = [
+  Song.create!(title: 'Never gonna you up', artist: 'Rick Astley'),
+  Song.create!(title: 'Sandstorm', artist: 'Darude'),
+  Song.create!(title: 'Deja Vu', artist: 'Initial D'),
+];
+
 Thredded::TopicForm.new(
     title: 'My first topic',
     content: <<-MARKDOWN,
