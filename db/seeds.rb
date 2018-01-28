@@ -102,4 +102,19 @@ Alco out.
 )
 amv_post_form.save
 
-amv = AmvPost.create!(post: amv_post_form.post)
+amv = AmvPost.create!(post: amv_post_form.post, editor_list: "xXxAlcoHolicxXx")
+
+amv_post_form2 = Thredded::TopicForm.new(
+    title: 'Speeeeedometer',
+    content: <<-MARKDOWN,
+THE CoNTENXT
+  MARKDOWN
+  user: user,
+  messageboard: amv_messageboard
+)
+amv_post_form2.save
+
+AmvPost.create!(
+  post: amv_post_form2.post, editor_list: 'Mark Twain, DeineMudda34'
+)
+
