@@ -1,5 +1,6 @@
-<select class="tag-select" multiple role="combobox">
-  <% Kf::AmvPost.tags_on(:editors).each do |editor_tag| %>
-    <option value="<%= editor_tag.id %>"><%= editor_tag.name %></option>
-  <% end %>
-</select>
+<%=
+  form.select :editors,
+    Kf::AmvPost.tags_on(:editors).collect {|editor| [editor.name, editor.name]},
+    { selected: [Kf::AmvPost.tags_on(:editors).map(&:name)] },
+    { multiple: true, class: 'tag-select', role: 'combobox' }
+%>

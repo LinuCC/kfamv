@@ -9,4 +9,10 @@
   @include thredded-media-tablet-and-up {
     padding: 0;
   }
+
+  .thredded--is-compact {
+    .tag-select + .select2 {
+      display: none;
+    }
+  }
 }

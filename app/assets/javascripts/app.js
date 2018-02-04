@@ -64,6 +64,8 @@
   App.onPageLoad(function() {
     $('.tag-select').select2({
       tags: true,
+      dropdownAutoWidth: true,
+      minimumInputLength: 3,
       tokenSeparators: [',']
     });
   });
