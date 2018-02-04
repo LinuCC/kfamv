@@ -1,7 +1,5 @@
 //= require_self
 //= require_tree ./app
-//= require jquery
-//= require select2
 
 (function () {
   this.App = this.App || {};

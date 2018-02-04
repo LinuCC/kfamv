@@ -1,5 +1,7 @@
+load 'thredded/posts_controller.rb'
+
 module Kf
-  class AmvPostsController < Thredded::PostController
+  class AmvPostsController < Thredded::PostsController
 
     # NOTE This controller is currently unused and untested.
     #   Here for the future. Go look at `AmvTopicsController` instead for a
