@@ -27,7 +27,14 @@ module Kf
       params
         .fetch(:topic, {})
         .permit(
-          :title, :locked, :sticky, :content, editors: [], category_ids: []
+          :title,
+          :locked,
+          :sticky,
+          :content,
+          editors: [],
+          sources: [],
+          studios: [],
+          category_ids: []
         )
         .merge(
           messageboard: messageboard,
@@ -35,6 +42,12 @@ module Kf
           ip: request.remote_ip,
         ).tap { |params| params[:editors] = params[:editors].reject { |editor|
             editor.strip.empty?
+          }
+        }.tap { |params| params[:sources] = params[:sources].reject { |source|
+            source.strip.empty?
+          }
+        }.tap { |params| params[:studios] = params[:studios].reject { |studio|
+            studio.strip.empty?
           }
         }
     end

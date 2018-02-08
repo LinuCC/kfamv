@@ -103,7 +103,10 @@ Alco out.
 amv_post_form.save
 
 amv = Kf::AmvPost.create!(
-  post: amv_post_form.post, editor_list: "xXxAlcoHolicxXx"
+  post: amv_post_form.post,
+  editor_list: 'xXxAlcoHolicxXx',
+  source_list: 'Pokemon, Simon & Pumba',
+  studio_list: ''
 )
 
 amv_post_form2 = Thredded::TopicForm.new(
@@ -117,6 +120,9 @@ THE CoNTENXT
 amv_post_form2.save
 
 Kf::AmvPost.create!(
-  post: amv_post_form2.post, editor_list: 'Mark Twain, DeineMudda34'
+  post: amv_post_form2.post,
+  editor_list: 'Mark Twain, DeineMudda34',
+  source_list: 'Multitrack Driftuuuuuuu',
+  studio_list: 'AmvFabrications, ADAMVRR'
 )
 

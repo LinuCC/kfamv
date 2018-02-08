@@ -1,6 +1,29 @@
-<%=
-  form.select :editors,
-    Kf::AmvPost.tags_on(:editors).collect {|editor| [editor.name, editor.name]},
-    { selected: [Kf::AmvPost.tags_on(:editors).map(&:name)] },
-    { multiple: true, class: 'tag-select', role: 'combobox' }
-%>
+<div class="tags-form">
+  <p class="tags-form--editors">
+    Editors:
+    <%=
+      form.select :editors,
+        Kf::AmvPost.tags_on(:editors).collect {|editor| [editor.name, editor.name]},
+        { selected: [Kf::AmvPost.tags_on(:editors).map(&:name)] },
+        { multiple: true, class: 'tag-select', role: 'combobox' }
+    %>
+  </p>
+  <p class="tags-form--sources">
+    Animes / Sources:
+    <%=
+      form.select :sources,
+        Kf::AmvPost.tags_on(:sources).collect {|source| [source.name, source.name]},
+        { selected: [Kf::AmvPost.tags_on(:sources).map(&:name)] },
+        { multiple: true, class: 'tag-select', role: 'combobox' }
+    %>
+  </p>
+  <p class="tags-form--studios">
+    Studios:
+    <%=
+      form.select :studios,
+        Kf::AmvPost.tags_on(:studios).collect {|studio| [studio.name, studio.name]},
+        { selected: [Kf::AmvPost.tags_on(:studios).map(&:name)] },
+        { multiple: true, class: 'tag-select', role: 'combobox' }
+    %>
+  </p>
+</div>

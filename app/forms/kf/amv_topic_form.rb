@@ -2,11 +2,13 @@ module Kf
   class AmvTopicForm < Thredded::TopicForm
 
     alias_method :topic_validate_children, :validate_children
-    attr_accessor :editor_list
+    attr_accessor :editor_list, :source_list, :studio_list
 
     def initialize(params = {})
       super(params)
       @editor_list = (params[:editors] || []).join(', ')
+      @source_list = (params[:sources] || []).join(', ')
+      @studio_list = (params[:studios] || []).join(', ')
     end
 
     def save
@@ -23,7 +25,9 @@ module Kf
 
     def amv_post
       @amv_post ||= Kf::AmvPost.new(
-        editor_list: editor_list
+        editor_list: editor_list,
+        source_list: source_list,
+        studio_list: studio_list
       )
       post.amv_post = @amv_post
     end
