@@ -1,4 +1,5 @@
-load 'thredded/post.rb'
+require 'thredded/post.rb'
+require 'thredded/messageboard.rb'
 
 Thredded::Post.class_eval do
   has_one :amv_post, class_name: :'Kf::AmvPost', dependent: :destroy

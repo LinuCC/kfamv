@@ -1,6 +1,8 @@
 module Kf
   class AmvTopicsController < Thredded::TopicsController
 
+    include Thredded::Engine.routes.url_helpers #.messageboards_path
+
     def new
       @new_topic = Kf::AmvTopicForm.new(new_topic_params)
       authorize_creating @new_topic.topic
@@ -12,8 +14,11 @@ module Kf
     def create
       @new_topic = Kf::AmvTopicForm.new(new_topic_params)
       authorize_creating @new_topic.topic
+
+      return render :new unless @new_topic.valid?
+
       if @new_topic.save
-        redirect_to Thredded::Engine.routes.url_helpers.messageboard_topics_path(messageboard)
+        redirect_to messageboard_topics_path(messageboard)
       else
         render :new
       end
@@ -27,7 +32,14 @@ module Kf
       params
         .fetch(:topic, {})
         .permit(
-          :title, :locked, :sticky, :content, editors: [], category_ids: []
+          :title,
+          :locked,
+          :sticky,
+          :content,
+          editors: [],
+          sources: [],
+          studios: [],
+          category_ids: []
         )
         .merge(
           messageboard: messageboard,
@@ -35,6 +47,12 @@ module Kf
           ip: request.remote_ip,
         ).tap { |params| params[:editors] = params[:editors].reject { |editor|
             editor.strip.empty?
+          }
+        }.tap { |params| params[:sources] = params[:sources].reject { |source|
+            source.strip.empty?
+          }
+        }.tap { |params| params[:studios] = params[:studios].reject { |studio|
+            studio.strip.empty?
           }
         }
     end

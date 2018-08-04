@@ -1,5 +1,5 @@
 <%= form_for topic,
-             url: topic.amv_topic? ? Rails.application.routes.url_helpers.amv_topics_path : topic.submit_path,
+             url: topic.amv_topic? ? Rails.application.routes.url_helpers.kf_amv_topics_path : topic.submit_path,
              html: {
                  class: "thredded--form thredded--new-topic-form #{local_assigns[:css_class]}",
                  'data-thredded-topic-form' => true,
@@ -22,7 +22,8 @@
     <% end %>
 
     <% if topic.amv_topic? %>
-      <%= render 'kf/amv_posts/tags_form', form: form, amv_post: topic.post.amv_post %>
+      <% amv_topic_form = Kf::AmvTopicForm.from_thredded_topic_form(topic) %>
+      <%= render 'kf/amv_posts/tags_form', form: form, amv_topic_form: amv_topic_form %>
     <% end %>
 
     <%= render 'thredded/posts_common/form/content',

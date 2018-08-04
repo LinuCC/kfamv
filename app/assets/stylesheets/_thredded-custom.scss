@@ -6,13 +6,21 @@
   // The padding and max-width are handled by the app's container.
   max-width: none;
   padding: 0;
+
   @include thredded-media-tablet-and-up {
     padding: 0;
   }
 
   .thredded--is-compact {
-    .tag-select + .select2 {
+    .tags-form {
       display: none;
+    }
+  }
+
+  .tags-form {
+    .select2 {
+      min-width: 300px;
+      width: 50%;
     }
   }
 }

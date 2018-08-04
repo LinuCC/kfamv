@@ -1,6 +1,32 @@
-<%=
-  form.select :editors,
-    Kf::AmvPost.tags_on(:editors).collect {|editor| [editor.name, editor.name]},
-    { selected: [Kf::AmvPost.tags_on(:editors).map(&:name)] },
-    { multiple: true, class: 'tag-select', role: 'combobox' }
-%>
+<div class="tags-form">
+  <p class="tags-form--editors">
+    Editors:
+    <%=
+      form.select :editors,
+        Kf::AmvPost.tags_on(:editors).collect {|editor| [editor.name, editor.name]},
+        { selected: amv_topic_form.amv_post.editor_list },
+        { multiple: true, class: 'tag-select', role: 'combobox' }
+    %>
+    <%= amv_topic_form.errors.full_messages_for(:editors).join(', ') || '' %>
+  </p>
+  <p class="tags-form--sources">
+    Animes / Sources:
+    <%=
+      form.select :sources,
+        Kf::AmvPost.tags_on(:sources).collect { |source| [source.name, source.name] },
+        { selected: amv_topic_form.amv_post.source_list },
+        { multiple: true, class: 'tag-select', role: 'combobox' }
+    %>
+    <%= amv_topic_form.errors.full_messages_for(:sources).join(', ') || '' %>
+  </p>
+  <p class="tags-form--studios">
+    Studios:
+    <%=
+      form.select :studios,
+        Kf::AmvPost.tags_on(:studios).collect {|studio| [studio.name, studio.name]},
+        { selected: amv_topic_form.amv_post.studio_list },
+        { multiple: true, class: 'tag-select', role: 'combobox' }
+    %>
+    <%= amv_topic_form.errors.full_messages_for(:studios).join(', ') || '' %>
+  </p>
+</div>
